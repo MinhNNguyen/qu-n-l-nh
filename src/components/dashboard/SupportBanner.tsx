@@ -1,7 +1,13 @@
 import { Headphones, Phone } from "lucide-react";
-import { supportInfo } from "@/data/mockData";
 
-const SupportBanner = () => {
+interface SupportBannerProps {
+  supportInfo: {
+    name: string;
+    phone: string;
+  };
+}
+
+const SupportBanner = ({ supportInfo }: SupportBannerProps) => {
   return (
     <div className="support-banner rounded-lg px-4 py-3 flex items-center gap-3 animate-fade-in">
       <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">

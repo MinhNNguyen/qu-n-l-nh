@@ -60,122 +60,206 @@ export interface Testimonial {
   avatar: string;
 }
 
-export const supportInfo = {
-  name: "Nguyễn Thị Mai",
-  phone: "0901 234 567",
+export interface OwnerData {
+  id: string;
+  name: string;
+  supportInfo: {
+    name: string;
+    phone: string;
+  };
+  meetings: Meeting[];
+  units: Unit[];
+  vacancyAlerts: VacancyAlert[];
+  statusCounts: StatusCount;
+}
+
+// Mock data for different owners
+export const ownerDataMap: Record<string, OwnerData> = {
+  "owner001": {
+    id: "owner001",
+    name: "Anh Minh Quang",
+    supportInfo: {
+      name: "Nguyễn Thị Mai",
+      phone: "0901 234 567",
+    },
+    meetings: [
+      {
+        id: "1",
+        date: "28/11",
+        time: "09:00",
+        renterName: "Trần Văn An",
+        buildingName: "Sunrise City",
+        unitNumber: "A-1205",
+      },
+      {
+        id: "2",
+        date: "28/11",
+        time: "14:30",
+        renterName: "Lê Thị Hương",
+        buildingName: "Vinhomes Central",
+        unitNumber: "T3-0812",
+      },
+      {
+        id: "3",
+        date: "29/11",
+        time: "10:00",
+        renterName: "Phạm Minh Tuấn",
+        buildingName: "The Manor",
+        unitNumber: "B-2301",
+      },
+      {
+        id: "4",
+        date: "30/11",
+        time: "16:00",
+        renterName: "Ngô Thanh Tâm",
+        buildingName: "Masteri Thảo Điền",
+        unitNumber: "T5-1102",
+      },
+      {
+        id: "5",
+        date: "01/12",
+        time: "11:30",
+        renterName: "Hoàng Văn Đức",
+        buildingName: "Landmark 81",
+        unitNumber: "L-4521",
+      },
+    ],
+    units: [
+      {
+        id: "u1",
+        status: 'setup-marketing',
+        name: "Sunrise City A-1508",
+        address: "23 Nguyễn Hữu Thọ, Q.7",
+      },
+      {
+        id: "u2",
+        status: 'on-sale',
+        name: "Vinhomes T2-0915",
+        address: "720 Điện Biên Phủ, Bình Thạnh",
+        facebookPostUrl: "https://facebook.com/post/123",
+        inquiries: 24,
+        viewingRequests: 8,
+      },
+      {
+        id: "u3",
+        status: 'on-deposit',
+        name: "The Manor B-1203",
+        address: "91 Nguyễn Hữu Cảnh, Bình Thạnh",
+        depositExpiryDate: "15/12/2024",
+        moveInDate: "01/01/2025",
+        tenantName: "Nguyễn Hoàng Long",
+      },
+      {
+        id: "u4",
+        status: 'on-sale',
+        name: "Masteri T4-2201",
+        address: "159 Xa lộ Hà Nội, Q.2",
+        facebookPostUrl: "https://facebook.com/post/456",
+        inquiries: 18,
+        viewingRequests: 5,
+      },
+      {
+        id: "u5",
+        status: 'setup-marketing',
+        name: "Landmark L-3105",
+        address: "772 Điện Biên Phủ, Bình Thạnh",
+      },
+    ],
+    vacancyAlerts: [
+      {
+        id: "v1",
+        apartmentName: "Sunrise City",
+        unitName: "A-0812",
+        moveOutDate: "15/12/2024",
+      },
+      {
+        id: "v2",
+        apartmentName: "Vinhomes Central",
+        unitName: "T1-1505",
+        moveOutDate: "20/12/2024",
+      },
+      {
+        id: "v3",
+        apartmentName: "The Manor",
+        unitName: "C-0901",
+        moveOutDate: "31/12/2024",
+      },
+    ],
+    statusCounts: {
+      vacant: 3,
+      onSale: 5,
+      upcoming: 2,
+      rented: 12,
+    },
+  },
+  "owner002": {
+    id: "owner002",
+    name: "Chị Thu Hà",
+    supportInfo: {
+      name: "Trần Văn Bình",
+      phone: "0912 345 678",
+    },
+    meetings: [
+      {
+        id: "1",
+        date: "29/11",
+        time: "10:00",
+        renterName: "Lý Thanh Tùng",
+        buildingName: "Saigon Pearl",
+        unitNumber: "SP-1801",
+      },
+      {
+        id: "2",
+        date: "30/11",
+        time: "15:00",
+        renterName: "Võ Thị Lan",
+        buildingName: "Saigon Pearl",
+        unitNumber: "SP-2205",
+      },
+    ],
+    units: [
+      {
+        id: "u1",
+        status: 'on-sale',
+        name: "Saigon Pearl SP-1801",
+        address: "92 Nguyễn Hữu Cảnh, Bình Thạnh",
+        facebookPostUrl: "https://facebook.com/post/789",
+        inquiries: 12,
+        viewingRequests: 3,
+      },
+      {
+        id: "u2",
+        status: 'on-deposit',
+        name: "Saigon Pearl SP-2205",
+        address: "92 Nguyễn Hữu Cảnh, Bình Thạnh",
+        depositExpiryDate: "10/12/2024",
+        moveInDate: "20/12/2024",
+        tenantName: "Trần Minh Khoa",
+      },
+    ],
+    vacancyAlerts: [
+      {
+        id: "v1",
+        apartmentName: "Saigon Pearl",
+        unitName: "SP-0912",
+        moveOutDate: "25/12/2024",
+      },
+    ],
+    statusCounts: {
+      vacant: 1,
+      onSale: 2,
+      upcoming: 1,
+      rented: 5,
+    },
+  },
 };
 
-export const meetings: Meeting[] = [
-  {
-    id: "1",
-    date: "28/11",
-    time: "09:00",
-    renterName: "Trần Văn An",
-    buildingName: "Sunrise City",
-    unitNumber: "A-1205",
-  },
-  {
-    id: "2",
-    date: "28/11",
-    time: "14:30",
-    renterName: "Lê Thị Hương",
-    buildingName: "Vinhomes Central",
-    unitNumber: "T3-0812",
-  },
-  {
-    id: "3",
-    date: "29/11",
-    time: "10:00",
-    renterName: "Phạm Minh Tuấn",
-    buildingName: "The Manor",
-    unitNumber: "B-2301",
-  },
-  {
-    id: "4",
-    date: "30/11",
-    time: "16:00",
-    renterName: "Ngô Thanh Tâm",
-    buildingName: "Masteri Thảo Điền",
-    unitNumber: "T5-1102",
-  },
-  {
-    id: "5",
-    date: "01/12",
-    time: "11:30",
-    renterName: "Hoàng Văn Đức",
-    buildingName: "Landmark 81",
-    unitNumber: "L-4521",
-  },
-];
+// Default owner ID for demo
+export const defaultOwnerId = "owner001";
 
-export const units: Unit[] = [
-  {
-    id: "u1",
-    status: 'setup-marketing',
-    name: "Sunrise City A-1508",
-    address: "23 Nguyễn Hữu Thọ, Q.7",
-  },
-  {
-    id: "u2",
-    status: 'on-sale',
-    name: "Vinhomes T2-0915",
-    address: "720 Điện Biên Phủ, Bình Thạnh",
-    facebookPostUrl: "https://facebook.com/post/123",
-    inquiries: 24,
-    viewingRequests: 8,
-  },
-  {
-    id: "u3",
-    status: 'on-deposit',
-    name: "The Manor B-1203",
-    address: "91 Nguyễn Hữu Cảnh, Bình Thạnh",
-    depositExpiryDate: "15/12/2024",
-    moveInDate: "01/01/2025",
-    tenantName: "Nguyễn Hoàng Long",
-  },
-  {
-    id: "u4",
-    status: 'on-sale',
-    name: "Masteri T4-2201",
-    address: "159 Xa lộ Hà Nội, Q.2",
-    facebookPostUrl: "https://facebook.com/post/456",
-    inquiries: 18,
-    viewingRequests: 5,
-  },
-  {
-    id: "u5",
-    status: 'setup-marketing',
-    name: "Landmark L-3105",
-    address: "772 Điện Biên Phủ, Bình Thạnh",
-  },
-];
-
-export const vacancyAlerts: VacancyAlert[] = [
-  {
-    id: "v1",
-    apartmentName: "Sunrise City",
-    unitName: "A-0812",
-    moveOutDate: "15/12/2024",
-  },
-  {
-    id: "v2",
-    apartmentName: "Vinhomes Central",
-    unitName: "T1-1505",
-    moveOutDate: "20/12/2024",
-  },
-  {
-    id: "v3",
-    apartmentName: "The Manor",
-    unitName: "C-0901",
-    moveOutDate: "31/12/2024",
-  },
-];
-
-export const statusCounts: StatusCount = {
-  vacant: 3,
-  onSale: 5,
-  upcoming: 2,
-  rented: 12,
+// Function to get owner data by ID
+export const getOwnerData = (ownerId: string): OwnerData | null => {
+  return ownerDataMap[ownerId] || null;
 };
 
 export const testimonials: Testimonial[] = [

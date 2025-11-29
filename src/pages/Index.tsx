@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Home, Building2, Users, TrendingUp, ArrowRight, CheckCircle } from "lucide-react";
+import { Home, Building2, Users, TrendingUp, ArrowRight, CheckCircle, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/Header";
 
@@ -31,6 +31,12 @@ const Index = () => {
     "Giao diện dễ sử dụng",
   ];
 
+  // Demo links for testing
+  const demoLinks = [
+    { id: "owner001", name: "Anh Minh Quang", units: 5 },
+    { id: "owner002", name: "Chị Thu Hà", units: 2 },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Header showMenu={false} />
@@ -48,20 +54,36 @@ const Index = () => {
             <p className="text-muted-foreground mb-8 leading-relaxed">
               Giải pháp quản lý bất động sản cho thuê thông minh và chuyên nghiệp
             </p>
-
-            <Button
-              size="lg"
-              onClick={() => navigate("/login")}
-              className="w-full h-14 text-lg font-semibold gap-2 shadow-lg"
-            >
-              Đăng nhập ngay
-              <ArrowRight className="w-5 h-5" />
-            </Button>
           </div>
         </section>
 
+        {/* Demo Access Section */}
+        <section className="px-6 py-6 bg-primary/5 border-t border-b border-primary/10">
+          <h2 className="font-semibold text-foreground mb-4 text-center">
+            Xem Dashboard Demo
+          </h2>
+          <div className="space-y-2">
+            {demoLinks.map((demo) => (
+              <button
+                key={demo.id}
+                onClick={() => navigate(`/dashboard?owner=${demo.id}`)}
+                className="w-full flex items-center justify-between p-4 bg-card rounded-xl border border-border hover:border-primary/50 transition-colors card-shadow"
+              >
+                <div className="text-left">
+                  <p className="font-medium text-foreground">{demo.name}</p>
+                  <p className="text-xs text-muted-foreground">{demo.units} căn hộ đang quản lý</p>
+                </div>
+                <ExternalLink className="w-5 h-5 text-primary" />
+              </button>
+            ))}
+          </div>
+          <p className="text-xs text-muted-foreground text-center mt-3">
+            Mỗi chủ nhà sẽ nhận được link riêng để xem thông tin
+          </p>
+        </section>
+
         {/* Features Section */}
-        <section className="px-6 py-8 bg-card border-t border-b border-border">
+        <section className="px-6 py-8 bg-card border-b border-border">
           <h2 className="font-semibold text-foreground mb-6 text-center">
             Tính năng nổi bật
           </h2>
@@ -110,16 +132,16 @@ const Index = () => {
         {/* CTA Section */}
         <section className="px-6 py-8 pb-12">
           <div className="bg-primary rounded-2xl p-6 text-center text-primary-foreground animate-fade-in">
-            <h2 className="font-bold text-xl mb-2">Bắt đầu ngay hôm nay</h2>
+            <h2 className="font-bold text-xl mb-2">Bạn là chủ nhà?</h2>
             <p className="text-primary-foreground/80 text-sm mb-4">
-              Đăng nhập để trải nghiệm quản lý tài sản dễ dàng
+              Liên hệ để nhận link dashboard riêng của bạn
             </p>
             <Button
               variant="secondary"
-              onClick={() => navigate("/login")}
               className="font-semibold"
+              onClick={() => window.location.href = "tel:19001234"}
             >
-              Đăng nhập
+              Liên hệ ngay: 1900 1234
             </Button>
           </div>
         </section>

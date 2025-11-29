@@ -1,7 +1,15 @@
 import { AlertTriangle, CalendarX, Building } from "lucide-react";
-import { vacancyAlerts } from "@/data/mockData";
+import { VacancyAlert } from "@/data/mockData";
 
-const VacancyAlertSection = () => {
+interface VacancyAlertSectionProps {
+  vacancyAlerts: VacancyAlert[];
+}
+
+const VacancyAlertSection = ({ vacancyAlerts }: VacancyAlertSectionProps) => {
+  if (vacancyAlerts.length === 0) {
+    return null;
+  }
+
   return (
     <section className="px-4 animate-fade-in" style={{ animationDelay: "300ms" }}>
       <div className="flex items-center gap-2 mb-3">
