@@ -1,8 +1,26 @@
 import { CalendarDays } from "lucide-react";
-import { meetings } from "@/data/mockData";
+import { Meeting } from "@/data/mockData";
 import MeetingCard from "./MeetingCard";
 
-const MeetingsSection = () => {
+interface MeetingsSectionProps {
+  meetings: Meeting[];
+}
+
+const MeetingsSection = ({ meetings }: MeetingsSectionProps) => {
+  if (meetings.length === 0) {
+    return (
+      <section className="animate-fade-in px-4" style={{ animationDelay: "100ms" }}>
+        <div className="flex items-center gap-2 mb-3">
+          <CalendarDays className="w-5 h-5 text-primary" />
+          <h2 className="font-semibold text-foreground">Lịch hẹn sắp tới</h2>
+        </div>
+        <div className="bg-muted/50 rounded-xl p-6 text-center">
+          <p className="text-sm text-muted-foreground">Chưa có lịch hẹn nào</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="animate-fade-in" style={{ animationDelay: "100ms" }}>
       <div className="flex items-center gap-2 mb-3 px-4">

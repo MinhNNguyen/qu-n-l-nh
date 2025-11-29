@@ -1,6 +1,10 @@
-import { statusCounts } from "@/data/mockData";
+import { StatusCount } from "@/data/mockData";
 
-const StatusGrid = () => {
+interface StatusGridProps {
+  statusCounts: StatusCount;
+}
+
+const StatusGrid = ({ statusCounts }: StatusGridProps) => {
   const statusItems = [
     {
       label: "Đang trống",
